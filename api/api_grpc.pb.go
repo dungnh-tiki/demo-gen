@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: api/api.proto
 
-package api
+package apollov1
 
 import (
 	context "context"
@@ -24,19 +24,49 @@ const _ = grpc.SupportPackageIsVersion7
 type ApolloServiceClient interface {
 	CreateWarehouse(ctx context.Context, in *CreateWarehouseRequest, opts ...grpc.CallOption) (*CreateWarehouseResponse, error)
 	GetWarehouse(ctx context.Context, in *GetWarehouseRequest, opts ...grpc.CallOption) (*GetWarehouseResponse, error)
-	ListWarehouses(ctx context.Context, in *ListWarehousesRequest, opts ...grpc.CallOption) (*ListWarehousesResponse, error)
+	ListWarehouse(ctx context.Context, in *ListWarehouseRequest, opts ...grpc.CallOption) (*ListWarehouseResponse, error)
+	UpdateWarehouse(ctx context.Context, in *UpdateWarehouseRequest, opts ...grpc.CallOption) (*UpdateWarehouseResponse, error)
+	SyncWarehouse(ctx context.Context, in *SyncWarehouseRequest, opts ...grpc.CallOption) (*SyncWarehouseResponse, error)
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
+	ListLocation(ctx context.Context, in *ListLocationRequest, opts ...grpc.CallOption) (*ListLocationResponse, error)
 	GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error)
+	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
+	SyncLocation(ctx context.Context, in *SyncLocationRequest, opts ...grpc.CallOption) (*SyncLocationResponse, error)
 	CreateZone(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error)
+	ListZone(ctx context.Context, in *ListZoneRequest, opts ...grpc.CallOption) (*ListZoneResponse, error)
 	GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*GetZoneResponse, error)
+	UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*UpdateZoneResponse, error)
+	SyncZone(ctx context.Context, in *SyncZoneRequest, opts ...grpc.CallOption) (*SyncZoneResponse, error)
 	CreateShelf(ctx context.Context, in *CreateShelfRequest, opts ...grpc.CallOption) (*CreateShelfResponse, error)
+	ListShelf(ctx context.Context, in *ListShelfRequest, opts ...grpc.CallOption) (*ListShelfResponse, error)
 	GetShelf(ctx context.Context, in *GetShelfRequest, opts ...grpc.CallOption) (*GetShelfResponse, error)
-	CreateProduct(ctx context.Context, in *CreateProductRequest, opts ...grpc.CallOption) (*CreateProductResponse, error)
-	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error)
+	UpdateShelf(ctx context.Context, in *UpdateShelfRequest, opts ...grpc.CallOption) (*UpdateShelfResponse, error)
+	SyncShelf(ctx context.Context, in *SyncShelfRequest, opts ...grpc.CallOption) (*SyncShelfResponse, error)
+	CreateTote(ctx context.Context, in *CreateToteRequest, opts ...grpc.CallOption) (*CreateToteResponse, error)
+	ListTote(ctx context.Context, in *ListToteRequest, opts ...grpc.CallOption) (*ListToteResponse, error)
+	GetTote(ctx context.Context, in *GetToteRequest, opts ...grpc.CallOption) (*GetToteResponse, error)
+	UpdateTote(ctx context.Context, in *UpdateToteRequest, opts ...grpc.CallOption) (*UpdateToteResponse, error)
+	SyncTote(ctx context.Context, in *SyncToteRequest, opts ...grpc.CallOption) (*SyncToteResponse, error)
+	CreateProductUom(ctx context.Context, in *CreateProductUomRequest, opts ...grpc.CallOption) (*CreateProductUomResponse, error)
+	GetProductUom(ctx context.Context, in *GetProductUomRequest, opts ...grpc.CallOption) (*GetProductUomResponse, error)
+	ListProductUom(ctx context.Context, in *ListProductUomRequest, opts ...grpc.CallOption) (*ListProductUomResponse, error)
+	UpdateProductUom(ctx context.Context, in *UpdateProductUomRequest, opts ...grpc.CallOption) (*UpdateProductUomResponse, error)
 	CreateProductBrand(ctx context.Context, in *CreateProductBrandRequest, opts ...grpc.CallOption) (*CreateProductBrandResponse, error)
 	GetProductBrand(ctx context.Context, in *GetProductBrandRequest, opts ...grpc.CallOption) (*GetProductBrandResponse, error)
+	ListProductBrand(ctx context.Context, in *ListProductBrandRequest, opts ...grpc.CallOption) (*ListProductBrandResponse, error)
+	UpdateProductBrand(ctx context.Context, in *UpdateProductBrandRequest, opts ...grpc.CallOption) (*UpdateProductBrandResponse, error)
+	CreateProductCategoryGroup(ctx context.Context, in *CreateProductCategoryGroupRequest, opts ...grpc.CallOption) (*CreateProductCategoryGroupResponse, error)
+	GetProductCategoryGroup(ctx context.Context, in *GetProductCategoryGroupRequest, opts ...grpc.CallOption) (*GetProductCategoryGroupResponse, error)
+	ListProductCategoryGroup(ctx context.Context, in *ListProductCategoryGroupRequest, opts ...grpc.CallOption) (*ListProductCategoryGroupResponse, error)
+	UpdateProductCategoryGroup(ctx context.Context, in *UpdateProductCategoryGroupRequest, opts ...grpc.CallOption) (*UpdateProductCategoryGroupResponse, error)
 	CreateProductCategory(ctx context.Context, in *CreateProductCategoryRequest, opts ...grpc.CallOption) (*CreateProductCategoryResponse, error)
 	GetProductCategory(ctx context.Context, in *GetProductCategoryRequest, opts ...grpc.CallOption) (*GetProductCategoryResponse, error)
+	ListProductCategory(ctx context.Context, in *ListProductCategoryRequest, opts ...grpc.CallOption) (*ListProductCategoryResponse, error)
+	UpdateProductCategory(ctx context.Context, in *UpdateProductCategoryRequest, opts ...grpc.CallOption) (*UpdateProductCategoryResponse, error)
+	CreateProductBarcode(ctx context.Context, in *CreateProductBarcodeRequest, opts ...grpc.CallOption) (*CreateProductBarcodeResponse, error)
+	GetProductBarcode(ctx context.Context, in *GetProductBarcodeRequest, opts ...grpc.CallOption) (*GetProductBarcodeResponse, error)
+	ListProductBarcode(ctx context.Context, in *ListProductBarcodeRequest, opts ...grpc.CallOption) (*ListProductBarcodeResponse, error)
+	UpdateProductBarcode(ctx context.Context, in *UpdateProductBarcodeRequest, opts ...grpc.CallOption) (*UpdateProductBarcodeResponse, error)
 }
 
 type apolloServiceClient struct {
@@ -49,7 +79,7 @@ func NewApolloServiceClient(cc grpc.ClientConnInterface) ApolloServiceClient {
 
 func (c *apolloServiceClient) CreateWarehouse(ctx context.Context, in *CreateWarehouseRequest, opts ...grpc.CallOption) (*CreateWarehouseResponse, error) {
 	out := new(CreateWarehouseResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateWarehouse", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateWarehouse", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,16 +88,34 @@ func (c *apolloServiceClient) CreateWarehouse(ctx context.Context, in *CreateWar
 
 func (c *apolloServiceClient) GetWarehouse(ctx context.Context, in *GetWarehouseRequest, opts ...grpc.CallOption) (*GetWarehouseResponse, error) {
 	out := new(GetWarehouseResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetWarehouse", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetWarehouse", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apolloServiceClient) ListWarehouses(ctx context.Context, in *ListWarehousesRequest, opts ...grpc.CallOption) (*ListWarehousesResponse, error) {
-	out := new(ListWarehousesResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/ListWarehouses", in, out, opts...)
+func (c *apolloServiceClient) ListWarehouse(ctx context.Context, in *ListWarehouseRequest, opts ...grpc.CallOption) (*ListWarehouseResponse, error) {
+	out := new(ListWarehouseResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListWarehouse", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateWarehouse(ctx context.Context, in *UpdateWarehouseRequest, opts ...grpc.CallOption) (*UpdateWarehouseResponse, error) {
+	out := new(UpdateWarehouseResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateWarehouse", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) SyncWarehouse(ctx context.Context, in *SyncWarehouseRequest, opts ...grpc.CallOption) (*SyncWarehouseResponse, error) {
+	out := new(SyncWarehouseResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/SyncWarehouse", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +124,16 @@ func (c *apolloServiceClient) ListWarehouses(ctx context.Context, in *ListWareho
 
 func (c *apolloServiceClient) CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error) {
 	out := new(CreateLocationResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateLocation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListLocation(ctx context.Context, in *ListLocationRequest, opts ...grpc.CallOption) (*ListLocationResponse, error) {
+	out := new(ListLocationResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +142,25 @@ func (c *apolloServiceClient) CreateLocation(ctx context.Context, in *CreateLoca
 
 func (c *apolloServiceClient) GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error) {
 	out := new(GetLocationResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetLocation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error) {
+	out := new(UpdateLocationResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) SyncLocation(ctx context.Context, in *SyncLocationRequest, opts ...grpc.CallOption) (*SyncLocationResponse, error) {
+	out := new(SyncLocationResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/SyncLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +169,16 @@ func (c *apolloServiceClient) GetLocation(ctx context.Context, in *GetLocationRe
 
 func (c *apolloServiceClient) CreateZone(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error) {
 	out := new(CreateZoneResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateZone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListZone(ctx context.Context, in *ListZoneRequest, opts ...grpc.CallOption) (*ListZoneResponse, error) {
+	out := new(ListZoneResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListZone", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +187,25 @@ func (c *apolloServiceClient) CreateZone(ctx context.Context, in *CreateZoneRequ
 
 func (c *apolloServiceClient) GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*GetZoneResponse, error) {
 	out := new(GetZoneResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetZone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*UpdateZoneResponse, error) {
+	out := new(UpdateZoneResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) SyncZone(ctx context.Context, in *SyncZoneRequest, opts ...grpc.CallOption) (*SyncZoneResponse, error) {
+	out := new(SyncZoneResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/SyncZone", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +214,16 @@ func (c *apolloServiceClient) GetZone(ctx context.Context, in *GetZoneRequest, o
 
 func (c *apolloServiceClient) CreateShelf(ctx context.Context, in *CreateShelfRequest, opts ...grpc.CallOption) (*CreateShelfResponse, error) {
 	out := new(CreateShelfResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateShelf", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateShelf", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListShelf(ctx context.Context, in *ListShelfRequest, opts ...grpc.CallOption) (*ListShelfResponse, error) {
+	out := new(ListShelfResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListShelf", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -121,25 +232,106 @@ func (c *apolloServiceClient) CreateShelf(ctx context.Context, in *CreateShelfRe
 
 func (c *apolloServiceClient) GetShelf(ctx context.Context, in *GetShelfRequest, opts ...grpc.CallOption) (*GetShelfResponse, error) {
 	out := new(GetShelfResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetShelf", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetShelf", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apolloServiceClient) CreateProduct(ctx context.Context, in *CreateProductRequest, opts ...grpc.CallOption) (*CreateProductResponse, error) {
-	out := new(CreateProductResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateProduct", in, out, opts...)
+func (c *apolloServiceClient) UpdateShelf(ctx context.Context, in *UpdateShelfRequest, opts ...grpc.CallOption) (*UpdateShelfResponse, error) {
+	out := new(UpdateShelfResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateShelf", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apolloServiceClient) GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error) {
-	out := new(GetProductResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetProduct", in, out, opts...)
+func (c *apolloServiceClient) SyncShelf(ctx context.Context, in *SyncShelfRequest, opts ...grpc.CallOption) (*SyncShelfResponse, error) {
+	out := new(SyncShelfResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/SyncShelf", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) CreateTote(ctx context.Context, in *CreateToteRequest, opts ...grpc.CallOption) (*CreateToteResponse, error) {
+	out := new(CreateToteResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateTote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListTote(ctx context.Context, in *ListToteRequest, opts ...grpc.CallOption) (*ListToteResponse, error) {
+	out := new(ListToteResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListTote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) GetTote(ctx context.Context, in *GetToteRequest, opts ...grpc.CallOption) (*GetToteResponse, error) {
+	out := new(GetToteResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetTote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateTote(ctx context.Context, in *UpdateToteRequest, opts ...grpc.CallOption) (*UpdateToteResponse, error) {
+	out := new(UpdateToteResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateTote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) SyncTote(ctx context.Context, in *SyncToteRequest, opts ...grpc.CallOption) (*SyncToteResponse, error) {
+	out := new(SyncToteResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/SyncTote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) CreateProductUom(ctx context.Context, in *CreateProductUomRequest, opts ...grpc.CallOption) (*CreateProductUomResponse, error) {
+	out := new(CreateProductUomResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateProductUom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) GetProductUom(ctx context.Context, in *GetProductUomRequest, opts ...grpc.CallOption) (*GetProductUomResponse, error) {
+	out := new(GetProductUomResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetProductUom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListProductUom(ctx context.Context, in *ListProductUomRequest, opts ...grpc.CallOption) (*ListProductUomResponse, error) {
+	out := new(ListProductUomResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListProductUom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateProductUom(ctx context.Context, in *UpdateProductUomRequest, opts ...grpc.CallOption) (*UpdateProductUomResponse, error) {
+	out := new(UpdateProductUomResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateProductUom", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +340,7 @@ func (c *apolloServiceClient) GetProduct(ctx context.Context, in *GetProductRequ
 
 func (c *apolloServiceClient) CreateProductBrand(ctx context.Context, in *CreateProductBrandRequest, opts ...grpc.CallOption) (*CreateProductBrandResponse, error) {
 	out := new(CreateProductBrandResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateProductBrand", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateProductBrand", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,7 +349,61 @@ func (c *apolloServiceClient) CreateProductBrand(ctx context.Context, in *Create
 
 func (c *apolloServiceClient) GetProductBrand(ctx context.Context, in *GetProductBrandRequest, opts ...grpc.CallOption) (*GetProductBrandResponse, error) {
 	out := new(GetProductBrandResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetProductBrand", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetProductBrand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListProductBrand(ctx context.Context, in *ListProductBrandRequest, opts ...grpc.CallOption) (*ListProductBrandResponse, error) {
+	out := new(ListProductBrandResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListProductBrand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateProductBrand(ctx context.Context, in *UpdateProductBrandRequest, opts ...grpc.CallOption) (*UpdateProductBrandResponse, error) {
+	out := new(UpdateProductBrandResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateProductBrand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) CreateProductCategoryGroup(ctx context.Context, in *CreateProductCategoryGroupRequest, opts ...grpc.CallOption) (*CreateProductCategoryGroupResponse, error) {
+	out := new(CreateProductCategoryGroupResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateProductCategoryGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) GetProductCategoryGroup(ctx context.Context, in *GetProductCategoryGroupRequest, opts ...grpc.CallOption) (*GetProductCategoryGroupResponse, error) {
+	out := new(GetProductCategoryGroupResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetProductCategoryGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListProductCategoryGroup(ctx context.Context, in *ListProductCategoryGroupRequest, opts ...grpc.CallOption) (*ListProductCategoryGroupResponse, error) {
+	out := new(ListProductCategoryGroupResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListProductCategoryGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateProductCategoryGroup(ctx context.Context, in *UpdateProductCategoryGroupRequest, opts ...grpc.CallOption) (*UpdateProductCategoryGroupResponse, error) {
+	out := new(UpdateProductCategoryGroupResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateProductCategoryGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -166,7 +412,7 @@ func (c *apolloServiceClient) GetProductBrand(ctx context.Context, in *GetProduc
 
 func (c *apolloServiceClient) CreateProductCategory(ctx context.Context, in *CreateProductCategoryRequest, opts ...grpc.CallOption) (*CreateProductCategoryResponse, error) {
 	out := new(CreateProductCategoryResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/CreateProductCategory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateProductCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -175,7 +421,61 @@ func (c *apolloServiceClient) CreateProductCategory(ctx context.Context, in *Cre
 
 func (c *apolloServiceClient) GetProductCategory(ctx context.Context, in *GetProductCategoryRequest, opts ...grpc.CallOption) (*GetProductCategoryResponse, error) {
 	out := new(GetProductCategoryResponse)
-	err := c.cc.Invoke(ctx, "/apollo.service.ApolloService/GetProductCategory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetProductCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListProductCategory(ctx context.Context, in *ListProductCategoryRequest, opts ...grpc.CallOption) (*ListProductCategoryResponse, error) {
+	out := new(ListProductCategoryResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListProductCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateProductCategory(ctx context.Context, in *UpdateProductCategoryRequest, opts ...grpc.CallOption) (*UpdateProductCategoryResponse, error) {
+	out := new(UpdateProductCategoryResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateProductCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) CreateProductBarcode(ctx context.Context, in *CreateProductBarcodeRequest, opts ...grpc.CallOption) (*CreateProductBarcodeResponse, error) {
+	out := new(CreateProductBarcodeResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/CreateProductBarcode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) GetProductBarcode(ctx context.Context, in *GetProductBarcodeRequest, opts ...grpc.CallOption) (*GetProductBarcodeResponse, error) {
+	out := new(GetProductBarcodeResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/GetProductBarcode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) ListProductBarcode(ctx context.Context, in *ListProductBarcodeRequest, opts ...grpc.CallOption) (*ListProductBarcodeResponse, error) {
+	out := new(ListProductBarcodeResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/ListProductBarcode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apolloServiceClient) UpdateProductBarcode(ctx context.Context, in *UpdateProductBarcodeRequest, opts ...grpc.CallOption) (*UpdateProductBarcodeResponse, error) {
+	out := new(UpdateProductBarcodeResponse)
+	err := c.cc.Invoke(ctx, "/ims.apollo.v1.ApolloService/UpdateProductBarcode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -188,19 +488,49 @@ func (c *apolloServiceClient) GetProductCategory(ctx context.Context, in *GetPro
 type ApolloServiceServer interface {
 	CreateWarehouse(context.Context, *CreateWarehouseRequest) (*CreateWarehouseResponse, error)
 	GetWarehouse(context.Context, *GetWarehouseRequest) (*GetWarehouseResponse, error)
-	ListWarehouses(context.Context, *ListWarehousesRequest) (*ListWarehousesResponse, error)
+	ListWarehouse(context.Context, *ListWarehouseRequest) (*ListWarehouseResponse, error)
+	UpdateWarehouse(context.Context, *UpdateWarehouseRequest) (*UpdateWarehouseResponse, error)
+	SyncWarehouse(context.Context, *SyncWarehouseRequest) (*SyncWarehouseResponse, error)
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
+	ListLocation(context.Context, *ListLocationRequest) (*ListLocationResponse, error)
 	GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error)
+	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
+	SyncLocation(context.Context, *SyncLocationRequest) (*SyncLocationResponse, error)
 	CreateZone(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error)
+	ListZone(context.Context, *ListZoneRequest) (*ListZoneResponse, error)
 	GetZone(context.Context, *GetZoneRequest) (*GetZoneResponse, error)
+	UpdateZone(context.Context, *UpdateZoneRequest) (*UpdateZoneResponse, error)
+	SyncZone(context.Context, *SyncZoneRequest) (*SyncZoneResponse, error)
 	CreateShelf(context.Context, *CreateShelfRequest) (*CreateShelfResponse, error)
+	ListShelf(context.Context, *ListShelfRequest) (*ListShelfResponse, error)
 	GetShelf(context.Context, *GetShelfRequest) (*GetShelfResponse, error)
-	CreateProduct(context.Context, *CreateProductRequest) (*CreateProductResponse, error)
-	GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error)
+	UpdateShelf(context.Context, *UpdateShelfRequest) (*UpdateShelfResponse, error)
+	SyncShelf(context.Context, *SyncShelfRequest) (*SyncShelfResponse, error)
+	CreateTote(context.Context, *CreateToteRequest) (*CreateToteResponse, error)
+	ListTote(context.Context, *ListToteRequest) (*ListToteResponse, error)
+	GetTote(context.Context, *GetToteRequest) (*GetToteResponse, error)
+	UpdateTote(context.Context, *UpdateToteRequest) (*UpdateToteResponse, error)
+	SyncTote(context.Context, *SyncToteRequest) (*SyncToteResponse, error)
+	CreateProductUom(context.Context, *CreateProductUomRequest) (*CreateProductUomResponse, error)
+	GetProductUom(context.Context, *GetProductUomRequest) (*GetProductUomResponse, error)
+	ListProductUom(context.Context, *ListProductUomRequest) (*ListProductUomResponse, error)
+	UpdateProductUom(context.Context, *UpdateProductUomRequest) (*UpdateProductUomResponse, error)
 	CreateProductBrand(context.Context, *CreateProductBrandRequest) (*CreateProductBrandResponse, error)
 	GetProductBrand(context.Context, *GetProductBrandRequest) (*GetProductBrandResponse, error)
+	ListProductBrand(context.Context, *ListProductBrandRequest) (*ListProductBrandResponse, error)
+	UpdateProductBrand(context.Context, *UpdateProductBrandRequest) (*UpdateProductBrandResponse, error)
+	CreateProductCategoryGroup(context.Context, *CreateProductCategoryGroupRequest) (*CreateProductCategoryGroupResponse, error)
+	GetProductCategoryGroup(context.Context, *GetProductCategoryGroupRequest) (*GetProductCategoryGroupResponse, error)
+	ListProductCategoryGroup(context.Context, *ListProductCategoryGroupRequest) (*ListProductCategoryGroupResponse, error)
+	UpdateProductCategoryGroup(context.Context, *UpdateProductCategoryGroupRequest) (*UpdateProductCategoryGroupResponse, error)
 	CreateProductCategory(context.Context, *CreateProductCategoryRequest) (*CreateProductCategoryResponse, error)
 	GetProductCategory(context.Context, *GetProductCategoryRequest) (*GetProductCategoryResponse, error)
+	ListProductCategory(context.Context, *ListProductCategoryRequest) (*ListProductCategoryResponse, error)
+	UpdateProductCategory(context.Context, *UpdateProductCategoryRequest) (*UpdateProductCategoryResponse, error)
+	CreateProductBarcode(context.Context, *CreateProductBarcodeRequest) (*CreateProductBarcodeResponse, error)
+	GetProductBarcode(context.Context, *GetProductBarcodeRequest) (*GetProductBarcodeResponse, error)
+	ListProductBarcode(context.Context, *ListProductBarcodeRequest) (*ListProductBarcodeResponse, error)
+	UpdateProductBarcode(context.Context, *UpdateProductBarcodeRequest) (*UpdateProductBarcodeResponse, error)
 }
 
 // UnimplementedApolloServiceServer should be embedded to have forward compatible implementations.
@@ -213,32 +543,86 @@ func (UnimplementedApolloServiceServer) CreateWarehouse(context.Context, *Create
 func (UnimplementedApolloServiceServer) GetWarehouse(context.Context, *GetWarehouseRequest) (*GetWarehouseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWarehouse not implemented")
 }
-func (UnimplementedApolloServiceServer) ListWarehouses(context.Context, *ListWarehousesRequest) (*ListWarehousesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListWarehouses not implemented")
+func (UnimplementedApolloServiceServer) ListWarehouse(context.Context, *ListWarehouseRequest) (*ListWarehouseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWarehouse not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateWarehouse(context.Context, *UpdateWarehouseRequest) (*UpdateWarehouseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateWarehouse not implemented")
+}
+func (UnimplementedApolloServiceServer) SyncWarehouse(context.Context, *SyncWarehouseRequest) (*SyncWarehouseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncWarehouse not implemented")
 }
 func (UnimplementedApolloServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
 }
+func (UnimplementedApolloServiceServer) ListLocation(context.Context, *ListLocationRequest) (*ListLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLocation not implemented")
+}
 func (UnimplementedApolloServiceServer) GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocation not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
+}
+func (UnimplementedApolloServiceServer) SyncLocation(context.Context, *SyncLocationRequest) (*SyncLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncLocation not implemented")
 }
 func (UnimplementedApolloServiceServer) CreateZone(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateZone not implemented")
 }
+func (UnimplementedApolloServiceServer) ListZone(context.Context, *ListZoneRequest) (*ListZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListZone not implemented")
+}
 func (UnimplementedApolloServiceServer) GetZone(context.Context, *GetZoneRequest) (*GetZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetZone not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateZone(context.Context, *UpdateZoneRequest) (*UpdateZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateZone not implemented")
+}
+func (UnimplementedApolloServiceServer) SyncZone(context.Context, *SyncZoneRequest) (*SyncZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncZone not implemented")
 }
 func (UnimplementedApolloServiceServer) CreateShelf(context.Context, *CreateShelfRequest) (*CreateShelfResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateShelf not implemented")
 }
+func (UnimplementedApolloServiceServer) ListShelf(context.Context, *ListShelfRequest) (*ListShelfResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShelf not implemented")
+}
 func (UnimplementedApolloServiceServer) GetShelf(context.Context, *GetShelfRequest) (*GetShelfResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetShelf not implemented")
 }
-func (UnimplementedApolloServiceServer) CreateProduct(context.Context, *CreateProductRequest) (*CreateProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateProduct not implemented")
+func (UnimplementedApolloServiceServer) UpdateShelf(context.Context, *UpdateShelfRequest) (*UpdateShelfResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateShelf not implemented")
 }
-func (UnimplementedApolloServiceServer) GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProduct not implemented")
+func (UnimplementedApolloServiceServer) SyncShelf(context.Context, *SyncShelfRequest) (*SyncShelfResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncShelf not implemented")
+}
+func (UnimplementedApolloServiceServer) CreateTote(context.Context, *CreateToteRequest) (*CreateToteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTote not implemented")
+}
+func (UnimplementedApolloServiceServer) ListTote(context.Context, *ListToteRequest) (*ListToteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTote not implemented")
+}
+func (UnimplementedApolloServiceServer) GetTote(context.Context, *GetToteRequest) (*GetToteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTote not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateTote(context.Context, *UpdateToteRequest) (*UpdateToteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTote not implemented")
+}
+func (UnimplementedApolloServiceServer) SyncTote(context.Context, *SyncToteRequest) (*SyncToteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncTote not implemented")
+}
+func (UnimplementedApolloServiceServer) CreateProductUom(context.Context, *CreateProductUomRequest) (*CreateProductUomResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProductUom not implemented")
+}
+func (UnimplementedApolloServiceServer) GetProductUom(context.Context, *GetProductUomRequest) (*GetProductUomResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductUom not implemented")
+}
+func (UnimplementedApolloServiceServer) ListProductUom(context.Context, *ListProductUomRequest) (*ListProductUomResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProductUom not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateProductUom(context.Context, *UpdateProductUomRequest) (*UpdateProductUomResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductUom not implemented")
 }
 func (UnimplementedApolloServiceServer) CreateProductBrand(context.Context, *CreateProductBrandRequest) (*CreateProductBrandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProductBrand not implemented")
@@ -246,11 +630,47 @@ func (UnimplementedApolloServiceServer) CreateProductBrand(context.Context, *Cre
 func (UnimplementedApolloServiceServer) GetProductBrand(context.Context, *GetProductBrandRequest) (*GetProductBrandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProductBrand not implemented")
 }
+func (UnimplementedApolloServiceServer) ListProductBrand(context.Context, *ListProductBrandRequest) (*ListProductBrandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProductBrand not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateProductBrand(context.Context, *UpdateProductBrandRequest) (*UpdateProductBrandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductBrand not implemented")
+}
+func (UnimplementedApolloServiceServer) CreateProductCategoryGroup(context.Context, *CreateProductCategoryGroupRequest) (*CreateProductCategoryGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProductCategoryGroup not implemented")
+}
+func (UnimplementedApolloServiceServer) GetProductCategoryGroup(context.Context, *GetProductCategoryGroupRequest) (*GetProductCategoryGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductCategoryGroup not implemented")
+}
+func (UnimplementedApolloServiceServer) ListProductCategoryGroup(context.Context, *ListProductCategoryGroupRequest) (*ListProductCategoryGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProductCategoryGroup not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateProductCategoryGroup(context.Context, *UpdateProductCategoryGroupRequest) (*UpdateProductCategoryGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductCategoryGroup not implemented")
+}
 func (UnimplementedApolloServiceServer) CreateProductCategory(context.Context, *CreateProductCategoryRequest) (*CreateProductCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProductCategory not implemented")
 }
 func (UnimplementedApolloServiceServer) GetProductCategory(context.Context, *GetProductCategoryRequest) (*GetProductCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProductCategory not implemented")
+}
+func (UnimplementedApolloServiceServer) ListProductCategory(context.Context, *ListProductCategoryRequest) (*ListProductCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProductCategory not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateProductCategory(context.Context, *UpdateProductCategoryRequest) (*UpdateProductCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductCategory not implemented")
+}
+func (UnimplementedApolloServiceServer) CreateProductBarcode(context.Context, *CreateProductBarcodeRequest) (*CreateProductBarcodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateProductBarcode not implemented")
+}
+func (UnimplementedApolloServiceServer) GetProductBarcode(context.Context, *GetProductBarcodeRequest) (*GetProductBarcodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductBarcode not implemented")
+}
+func (UnimplementedApolloServiceServer) ListProductBarcode(context.Context, *ListProductBarcodeRequest) (*ListProductBarcodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProductBarcode not implemented")
+}
+func (UnimplementedApolloServiceServer) UpdateProductBarcode(context.Context, *UpdateProductBarcodeRequest) (*UpdateProductBarcodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductBarcode not implemented")
 }
 
 // UnsafeApolloServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -274,7 +694,7 @@ func _ApolloService_CreateWarehouse_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateWarehouse",
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateWarehouse",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).CreateWarehouse(ctx, req.(*CreateWarehouseRequest))
@@ -292,7 +712,7 @@ func _ApolloService_GetWarehouse_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetWarehouse",
+		FullMethod: "/ims.apollo.v1.ApolloService/GetWarehouse",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).GetWarehouse(ctx, req.(*GetWarehouseRequest))
@@ -300,20 +720,56 @@ func _ApolloService_GetWarehouse_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApolloService_ListWarehouses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListWarehousesRequest)
+func _ApolloService_ListWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListWarehouseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApolloServiceServer).ListWarehouses(ctx, in)
+		return srv.(ApolloServiceServer).ListWarehouse(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/ListWarehouses",
+		FullMethod: "/ims.apollo.v1.ApolloService/ListWarehouse",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApolloServiceServer).ListWarehouses(ctx, req.(*ListWarehousesRequest))
+		return srv.(ApolloServiceServer).ListWarehouse(ctx, req.(*ListWarehouseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateWarehouseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateWarehouse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateWarehouse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateWarehouse(ctx, req.(*UpdateWarehouseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_SyncWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncWarehouseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).SyncWarehouse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/SyncWarehouse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).SyncWarehouse(ctx, req.(*SyncWarehouseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -328,10 +784,28 @@ func _ApolloService_CreateLocation_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateLocation",
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).CreateLocation(ctx, req.(*CreateLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListLocation(ctx, req.(*ListLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -346,10 +820,46 @@ func _ApolloService_GetLocation_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetLocation",
+		FullMethod: "/ims.apollo.v1.ApolloService/GetLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).GetLocation(ctx, req.(*GetLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_SyncLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).SyncLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/SyncLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).SyncLocation(ctx, req.(*SyncLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -364,10 +874,28 @@ func _ApolloService_CreateZone_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateZone",
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateZone",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).CreateZone(ctx, req.(*CreateZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListZone(ctx, req.(*ListZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -382,10 +910,46 @@ func _ApolloService_GetZone_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetZone",
+		FullMethod: "/ims.apollo.v1.ApolloService/GetZone",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).GetZone(ctx, req.(*GetZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateZone(ctx, req.(*UpdateZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_SyncZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).SyncZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/SyncZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).SyncZone(ctx, req.(*SyncZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -400,10 +964,28 @@ func _ApolloService_CreateShelf_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateShelf",
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateShelf",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).CreateShelf(ctx, req.(*CreateShelfRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListShelf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListShelfRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListShelf(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListShelf",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListShelf(ctx, req.(*ListShelfRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -418,7 +1000,7 @@ func _ApolloService_GetShelf_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetShelf",
+		FullMethod: "/ims.apollo.v1.ApolloService/GetShelf",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).GetShelf(ctx, req.(*GetShelfRequest))
@@ -426,38 +1008,200 @@ func _ApolloService_GetShelf_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApolloService_CreateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateProductRequest)
+func _ApolloService_UpdateShelf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateShelfRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApolloServiceServer).CreateProduct(ctx, in)
+		return srv.(ApolloServiceServer).UpdateShelf(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateProduct",
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateShelf",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApolloServiceServer).CreateProduct(ctx, req.(*CreateProductRequest))
+		return srv.(ApolloServiceServer).UpdateShelf(ctx, req.(*UpdateShelfRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApolloService_GetProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProductRequest)
+func _ApolloService_SyncShelf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncShelfRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApolloServiceServer).GetProduct(ctx, in)
+		return srv.(ApolloServiceServer).SyncShelf(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetProduct",
+		FullMethod: "/ims.apollo.v1.ApolloService/SyncShelf",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApolloServiceServer).GetProduct(ctx, req.(*GetProductRequest))
+		return srv.(ApolloServiceServer).SyncShelf(ctx, req.(*SyncShelfRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_CreateTote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateToteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).CreateTote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateTote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).CreateTote(ctx, req.(*CreateToteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListTote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListToteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListTote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListTote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListTote(ctx, req.(*ListToteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_GetTote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetToteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).GetTote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/GetTote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).GetTote(ctx, req.(*GetToteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateTote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateToteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateTote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateTote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateTote(ctx, req.(*UpdateToteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_SyncTote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncToteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).SyncTote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/SyncTote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).SyncTote(ctx, req.(*SyncToteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_CreateProductUom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateProductUomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).CreateProductUom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateProductUom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).CreateProductUom(ctx, req.(*CreateProductUomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_GetProductUom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductUomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).GetProductUom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/GetProductUom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).GetProductUom(ctx, req.(*GetProductUomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListProductUom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProductUomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListProductUom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListProductUom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListProductUom(ctx, req.(*ListProductUomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateProductUom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductUomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateProductUom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateProductUom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateProductUom(ctx, req.(*UpdateProductUomRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -472,7 +1216,7 @@ func _ApolloService_CreateProductBrand_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateProductBrand",
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateProductBrand",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).CreateProductBrand(ctx, req.(*CreateProductBrandRequest))
@@ -490,10 +1234,118 @@ func _ApolloService_GetProductBrand_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetProductBrand",
+		FullMethod: "/ims.apollo.v1.ApolloService/GetProductBrand",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).GetProductBrand(ctx, req.(*GetProductBrandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListProductBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProductBrandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListProductBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListProductBrand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListProductBrand(ctx, req.(*ListProductBrandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateProductBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductBrandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateProductBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateProductBrand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateProductBrand(ctx, req.(*UpdateProductBrandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_CreateProductCategoryGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateProductCategoryGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).CreateProductCategoryGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateProductCategoryGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).CreateProductCategoryGroup(ctx, req.(*CreateProductCategoryGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_GetProductCategoryGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductCategoryGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).GetProductCategoryGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/GetProductCategoryGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).GetProductCategoryGroup(ctx, req.(*GetProductCategoryGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListProductCategoryGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProductCategoryGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListProductCategoryGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListProductCategoryGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListProductCategoryGroup(ctx, req.(*ListProductCategoryGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateProductCategoryGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductCategoryGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateProductCategoryGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateProductCategoryGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateProductCategoryGroup(ctx, req.(*UpdateProductCategoryGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -508,7 +1360,7 @@ func _ApolloService_CreateProductCategory_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/CreateProductCategory",
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateProductCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).CreateProductCategory(ctx, req.(*CreateProductCategoryRequest))
@@ -526,10 +1378,118 @@ func _ApolloService_GetProductCategory_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/apollo.service.ApolloService/GetProductCategory",
+		FullMethod: "/ims.apollo.v1.ApolloService/GetProductCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApolloServiceServer).GetProductCategory(ctx, req.(*GetProductCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListProductCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProductCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListProductCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListProductCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListProductCategory(ctx, req.(*ListProductCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateProductCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateProductCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateProductCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateProductCategory(ctx, req.(*UpdateProductCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_CreateProductBarcode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateProductBarcodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).CreateProductBarcode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/CreateProductBarcode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).CreateProductBarcode(ctx, req.(*CreateProductBarcodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_GetProductBarcode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProductBarcodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).GetProductBarcode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/GetProductBarcode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).GetProductBarcode(ctx, req.(*GetProductBarcodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_ListProductBarcode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProductBarcodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).ListProductBarcode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/ListProductBarcode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).ListProductBarcode(ctx, req.(*ListProductBarcodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApolloService_UpdateProductBarcode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductBarcodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApolloServiceServer).UpdateProductBarcode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ims.apollo.v1.ApolloService/UpdateProductBarcode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApolloServiceServer).UpdateProductBarcode(ctx, req.(*UpdateProductBarcodeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -538,7 +1498,7 @@ func _ApolloService_GetProductCategory_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ApolloService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "apollo.service.ApolloService",
+	ServiceName: "ims.apollo.v1.ApolloService",
 	HandlerType: (*ApolloServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -550,40 +1510,112 @@ var ApolloService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApolloService_GetWarehouse_Handler,
 		},
 		{
-			MethodName: "ListWarehouses",
-			Handler:    _ApolloService_ListWarehouses_Handler,
+			MethodName: "ListWarehouse",
+			Handler:    _ApolloService_ListWarehouse_Handler,
+		},
+		{
+			MethodName: "UpdateWarehouse",
+			Handler:    _ApolloService_UpdateWarehouse_Handler,
+		},
+		{
+			MethodName: "SyncWarehouse",
+			Handler:    _ApolloService_SyncWarehouse_Handler,
 		},
 		{
 			MethodName: "CreateLocation",
 			Handler:    _ApolloService_CreateLocation_Handler,
 		},
 		{
+			MethodName: "ListLocation",
+			Handler:    _ApolloService_ListLocation_Handler,
+		},
+		{
 			MethodName: "GetLocation",
 			Handler:    _ApolloService_GetLocation_Handler,
+		},
+		{
+			MethodName: "UpdateLocation",
+			Handler:    _ApolloService_UpdateLocation_Handler,
+		},
+		{
+			MethodName: "SyncLocation",
+			Handler:    _ApolloService_SyncLocation_Handler,
 		},
 		{
 			MethodName: "CreateZone",
 			Handler:    _ApolloService_CreateZone_Handler,
 		},
 		{
+			MethodName: "ListZone",
+			Handler:    _ApolloService_ListZone_Handler,
+		},
+		{
 			MethodName: "GetZone",
 			Handler:    _ApolloService_GetZone_Handler,
+		},
+		{
+			MethodName: "UpdateZone",
+			Handler:    _ApolloService_UpdateZone_Handler,
+		},
+		{
+			MethodName: "SyncZone",
+			Handler:    _ApolloService_SyncZone_Handler,
 		},
 		{
 			MethodName: "CreateShelf",
 			Handler:    _ApolloService_CreateShelf_Handler,
 		},
 		{
+			MethodName: "ListShelf",
+			Handler:    _ApolloService_ListShelf_Handler,
+		},
+		{
 			MethodName: "GetShelf",
 			Handler:    _ApolloService_GetShelf_Handler,
 		},
 		{
-			MethodName: "CreateProduct",
-			Handler:    _ApolloService_CreateProduct_Handler,
+			MethodName: "UpdateShelf",
+			Handler:    _ApolloService_UpdateShelf_Handler,
 		},
 		{
-			MethodName: "GetProduct",
-			Handler:    _ApolloService_GetProduct_Handler,
+			MethodName: "SyncShelf",
+			Handler:    _ApolloService_SyncShelf_Handler,
+		},
+		{
+			MethodName: "CreateTote",
+			Handler:    _ApolloService_CreateTote_Handler,
+		},
+		{
+			MethodName: "ListTote",
+			Handler:    _ApolloService_ListTote_Handler,
+		},
+		{
+			MethodName: "GetTote",
+			Handler:    _ApolloService_GetTote_Handler,
+		},
+		{
+			MethodName: "UpdateTote",
+			Handler:    _ApolloService_UpdateTote_Handler,
+		},
+		{
+			MethodName: "SyncTote",
+			Handler:    _ApolloService_SyncTote_Handler,
+		},
+		{
+			MethodName: "CreateProductUom",
+			Handler:    _ApolloService_CreateProductUom_Handler,
+		},
+		{
+			MethodName: "GetProductUom",
+			Handler:    _ApolloService_GetProductUom_Handler,
+		},
+		{
+			MethodName: "ListProductUom",
+			Handler:    _ApolloService_ListProductUom_Handler,
+		},
+		{
+			MethodName: "UpdateProductUom",
+			Handler:    _ApolloService_UpdateProductUom_Handler,
 		},
 		{
 			MethodName: "CreateProductBrand",
@@ -594,12 +1626,60 @@ var ApolloService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApolloService_GetProductBrand_Handler,
 		},
 		{
+			MethodName: "ListProductBrand",
+			Handler:    _ApolloService_ListProductBrand_Handler,
+		},
+		{
+			MethodName: "UpdateProductBrand",
+			Handler:    _ApolloService_UpdateProductBrand_Handler,
+		},
+		{
+			MethodName: "CreateProductCategoryGroup",
+			Handler:    _ApolloService_CreateProductCategoryGroup_Handler,
+		},
+		{
+			MethodName: "GetProductCategoryGroup",
+			Handler:    _ApolloService_GetProductCategoryGroup_Handler,
+		},
+		{
+			MethodName: "ListProductCategoryGroup",
+			Handler:    _ApolloService_ListProductCategoryGroup_Handler,
+		},
+		{
+			MethodName: "UpdateProductCategoryGroup",
+			Handler:    _ApolloService_UpdateProductCategoryGroup_Handler,
+		},
+		{
 			MethodName: "CreateProductCategory",
 			Handler:    _ApolloService_CreateProductCategory_Handler,
 		},
 		{
 			MethodName: "GetProductCategory",
 			Handler:    _ApolloService_GetProductCategory_Handler,
+		},
+		{
+			MethodName: "ListProductCategory",
+			Handler:    _ApolloService_ListProductCategory_Handler,
+		},
+		{
+			MethodName: "UpdateProductCategory",
+			Handler:    _ApolloService_UpdateProductCategory_Handler,
+		},
+		{
+			MethodName: "CreateProductBarcode",
+			Handler:    _ApolloService_CreateProductBarcode_Handler,
+		},
+		{
+			MethodName: "GetProductBarcode",
+			Handler:    _ApolloService_GetProductBarcode_Handler,
+		},
+		{
+			MethodName: "ListProductBarcode",
+			Handler:    _ApolloService_ListProductBarcode_Handler,
+		},
+		{
+			MethodName: "UpdateProductBarcode",
+			Handler:    _ApolloService_UpdateProductBarcode_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

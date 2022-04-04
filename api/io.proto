@@ -1,0 +1,553 @@
+syntax = "proto3";
+package ims.apollo.v1;
+
+import "google/rpc/code.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "validate/validate.proto";
+import "api/data.proto";
+
+// Warehouses - BEGIN
+
+message CreateWarehouseRequest {
+  string code = 1 [json_name = "code", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string name = 2 [json_name = "name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  bool is_active = 4 [json_name = "is_active"];
+  bool is_bulky_allow = 5 [json_name = "is_bulky_allow"];
+  bool is_bulky_allow_bop = 6 [json_name = "is_bulky_allow_bop"];
+  int32 erp_id = 7 [json_name = "erp_id"];
+}
+
+message CreateWarehouseResponse {
+  google.rpc.Code code = 1;
+  Warehouse data = 2;
+}
+
+message GetWarehouseRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetWarehouseResponse {
+  google.rpc.Code code = 1;
+  Warehouse data = 2;
+}
+
+message ListWarehouseRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListWarehouseResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated Warehouse data = 4;
+}
+
+message UpdateWarehouseRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateWarehouseResponse {
+  google.rpc.Code code = 1;
+  Warehouse data = 2;
+}
+
+message SyncWarehouseRequest {
+  int32 erp_id = 1 [json_name = "erp_id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message SyncWarehouseResponse {
+  google.rpc.Code code = 1;
+  Warehouse data = 2;
+}
+
+// Warehouses - END
+
+// Locations - BEGIN
+
+message CreateLocationRequest {
+  string type = 1 [json_name = "type"];
+  string name = 2 [json_name = "name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string complete_name = 3 [json_name = "complete_name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string usage = 4 [json_name = "usage", (validate.rules).string = {min_len: 1, max_len: 255}];
+  bool is_active = 5 [json_name = "is_active"];
+  bool is_prevent_done = 6 [json_name = "is_prevent_done"];
+  bool is_sync_stock = 7 [json_name = "is_sync_stock"];
+  bool is_update_contact_info = 8 [json_name = "is_update_contact_info"];
+  int32 warehouse_id = 9 [json_name = "warehouse_id"];
+  int32 parent_id = 10 [json_name = "parent_id"];
+  google.protobuf.Struct contact_info = 11 [json_name = "contact_info"];
+  int32 erp_id = 12 [json_name = "erp_id"];
+}
+
+message CreateLocationResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  Location data = 2 [json_name = "data"];
+}
+
+message ListLocationRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListLocationResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated Location data = 4;
+}
+
+message GetLocationRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetLocationResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  Location data = 2 [json_name = "data"];
+}
+
+message UpdateLocationRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateLocationResponse {
+  google.rpc.Code code = 1;
+  Location data = 2;
+}
+
+message SyncLocationRequest {
+  int32 erp_id = 1 [json_name = "erp_id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message SyncLocationResponse {
+  google.rpc.Code code = 1;
+  Location data = 2;
+}
+
+// Locations - END
+
+// Zones - BEGIN
+
+message CreateZoneRequest {
+  string type = 1 [json_name = "type", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string name = 2 [json_name = "name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  int32 priority = 3 [json_name = "priority", (validate.rules).int32 = {gt: 0}];
+  int32 warehouse_id = 4 [json_name = "warehouse_id", (validate.rules).int32 = {gt: 0}];
+  bool is_active = 5 [json_name = "is_active"];
+  int32 erp_id = 7 [json_name = "erp_id"];
+}
+
+message CreateZoneResponse {
+  google.rpc.Code code = 1;
+  Zone data = 2;
+}
+
+message ListZoneRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListZoneResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated Zone data = 4;
+}
+
+message GetZoneRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetZoneResponse {
+  google.rpc.Code code = 1;
+  Zone data = 2;
+}
+
+message UpdateZoneRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateZoneResponse {
+  google.rpc.Code code = 1;
+  Zone data = 2;
+}
+
+message SyncZoneRequest {
+  int32 erp_id = 1 [json_name = "erp_id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message SyncZoneResponse {
+  google.rpc.Code code = 1;
+  Zone data = 2;
+}
+
+// Zones - END
+
+// Shelves - BEGIN
+
+message CreateShelfRequest {
+  string code = 2 [json_name = "code", (validate.rules).string = {min_len: 1, max_len: 255}];
+  bool is_active = 3 [json_name = "is_active"];
+  string type = 4 [json_name = "type", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string size_type = 5 [json_name = "size_type", (validate.rules).string = {min_len: 1, max_len: 255}];
+  int32 length = 6 [json_name = "length"];
+  int32 width = 7 [json_name = "width"];
+  int32 height = 8 [json_name = "height"];
+  int32 warehouse_id = 9 [json_name = "warehouse_id", (validate.rules).int32 = {gt: 0}];
+  int32 location_id = 10 [json_name = "location_id", (validate.rules).int32 = {gt: 0}];
+  int32 zone_id = 11 [json_name = "zone_id"];
+  google.protobuf.Struct extra_attrs = 12 [json_name = "extra_attrs"];
+  int32 erp_id = 13 [json_name = "erp_id"];
+}
+
+message CreateShelfResponse {
+  google.rpc.Code code = 1;
+  Shelf data = 2;
+}
+
+message ListShelfRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListShelfResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated Shelf data = 4;
+}
+
+message GetShelfRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetShelfResponse {
+  google.rpc.Code code = 1;
+  Shelf data = 2;
+}
+
+message UpdateShelfRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateShelfResponse {
+  google.rpc.Code code = 1;
+  Shelf data = 2;
+}
+
+message SyncShelfRequest {
+  int32 erp_id = 1 [json_name = "erp_id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message SyncShelfResponse {
+  google.rpc.Code code = 1;
+  Shelf data = 2;
+}
+
+// Shelves - END
+
+// Totes - BEGIN
+
+message CreateToteRequest {
+  string code = 1 [json_name = "code", (validate.rules).string = {min_len: 1; max_len: 255}];
+  bool is_active = 2;
+  int32 warehouse_id = 3 [json_name = "warehouse_id", (validate.rules).int32 = {gt: 0}];
+  int32 location_id = 4 [json_name = "location_id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct extra_attrs = 5;
+  int32 erp_id = 6;
+}
+
+message CreateToteResponse {
+  google.rpc.Code code = 1;
+  Tote data = 2;
+}
+
+message ListToteRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListToteResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated Tote data = 4;
+}
+
+message GetToteRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetToteResponse {
+  google.rpc.Code code = 1;
+  Tote data = 2;
+}
+
+message UpdateToteRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateToteResponse {
+  google.rpc.Code code = 1;
+  Tote data = 2;
+}
+
+message SyncToteRequest {
+  int32 erp_id = 1 [json_name = "erp_id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message SyncToteResponse {
+  google.rpc.Code code = 1;
+  Tote data = 2;
+}
+
+// Totes - END
+
+// Product Uoms - BEGIN
+
+message CreateProductUomRequest {
+  string unit = 1 [json_name = "unit", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string code = 2 [json_name = "code", (validate.rules).string = {min_len: 1, max_len: 255}];
+  bool is_active = 3 [json_name = "is_active"];
+  double rounding = 4 [json_name = "rounding"];
+  double factor = 5 [json_name = "factor"];
+  int32 erp_id = 7 [json_name = "erp_id"];
+}
+
+message CreateProductUomResponse {
+  google.rpc.Code code = 1;
+  ProductUom data = 2;
+}
+
+message GetProductUomRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetProductUomResponse {
+  google.rpc.Code code = 1;
+  ProductUom data = 2;
+}
+
+message ListProductUomRequest {
+  int32 next = 1 [json_name = "next", (validate.rules).int32 = {gte: 0}];
+  int32 limit = 2 [json_name = "limit", (validate.rules).int32 = {gt: 0; lte: 100}];
+}
+
+message ListProductUomResponse {
+  google.rpc.Code code = 1;
+  int32 len = 2;
+  int32 next = 3;
+  repeated ProductUom data = 4;
+}
+
+message UpdateProductUomRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateProductUomResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  ProductUom data = 2 [json_name = "data"];
+}
+
+// Product Uoms - END
+
+// Product Brands - BEGIN
+
+message CreateProductBrandRequest {
+  string name = 1 [json_name = "name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string code = 2 [json_name = "code", (validate.rules).string = {min_len: 0, max_len: 255}];
+  string description = 3 [json_name = "description"];
+  bool is_active = 4 [json_name = "is_active"];
+  int32 erp_id = 5 [json_name = "erp_id"];
+}
+
+message CreateProductBrandResponse {
+  google.rpc.Code code = 1;
+  ProductBrand data = 2;
+}
+
+message GetProductBrandRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetProductBrandResponse {
+  google.rpc.Code code = 1;
+  ProductBrand data = 2;
+}
+
+message ListProductBrandRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListProductBrandResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated ProductBrand data = 4;
+}
+
+message UpdateProductBrandRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateProductBrandResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  ProductBrand data = 2 [json_name = "data"];
+}
+
+// Product Brands - END
+
+// Product Category Groups - BEGIN
+
+message CreateProductCategoryGroupRequest {
+  string name = 1 [json_name = "name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string code = 2 [json_name = "code", (validate.rules).string = {min_len: 1, max_len: 255}];
+  int32 erp_id = 3 [json_name = "erp_id"];
+}
+
+message CreateProductCategoryGroupResponse {
+  google.rpc.Code code = 1;
+  ProductCategoryGroup data = 2;
+}
+
+message GetProductCategoryGroupRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetProductCategoryGroupResponse {
+  google.rpc.Code code = 1;
+  ProductCategoryGroup data = 2;
+}
+
+message ListProductCategoryGroupRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListProductCategoryGroupResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated ProductCategoryGroup data = 4;
+}
+
+message UpdateProductCategoryGroupRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateProductCategoryGroupResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  ProductCategoryGroup data = 2 [json_name = "data"];
+}
+
+// Product CategoryGroups - END
+
+// Product Categories - BEGIN
+
+message CreateProductCategoryRequest {
+  string name = 1 [json_name = "name", (validate.rules).string = {min_len: 1, max_len: 255}];
+  string type = 2 [json_name = "type", (validate.rules).string = {min_len: 1, max_len: 255}];
+  int32 parent_id = 3 [json_name = "parent_id"];
+  int32 product_category_group_id = 4 [json_name = "product_category_group_id"];
+  int32 erp_id = 5 [json_name = "erp_id"];
+}
+
+message CreateProductCategoryResponse {
+  google.rpc.Code code = 1;
+  ProductCategory data = 2;
+}
+
+message GetProductCategoryRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetProductCategoryResponse {
+  google.rpc.Code code = 1;
+  ProductCategory data = 2;
+}
+
+message ListProductCategoryRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListProductCategoryResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated ProductCategory data = 4;
+}
+
+message UpdateProductCategoryRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateProductCategoryResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  ProductCategory data = 2 [json_name = "data"];
+}
+
+// Product Categories - END
+
+// Product Barcodes - BEGIN
+
+message CreateProductBarcodeRequest {
+  string code = 2 [json_name = "code", (validate.rules).string = {min_len: 0, max_len: 255}];
+  int32 product_id = 3 [json_name = "product_id"];
+  int32 erp_id = 5 [json_name = "erp_id"];
+}
+
+message CreateProductBarcodeResponse {
+  google.rpc.Code code = 1;
+  ProductBarcode data = 2;
+}
+
+message GetProductBarcodeRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+}
+
+message GetProductBarcodeResponse {
+  google.rpc.Code code = 1;
+  ProductBarcode data = 2;
+}
+
+message ListProductBarcodeRequest {
+  uint32 next = 1 [json_name = "next", (validate.rules).uint32 = {gte: 0}];
+  uint32 limit = 2 [json_name = "limit", (validate.rules).uint32 = {gt: 0; lte: 100}];
+}
+
+message ListProductBarcodeResponse {
+  google.rpc.Code code = 1;
+  uint32 len = 2;
+  uint32 next = 3;
+  repeated ProductBarcode data = 4;
+}
+
+message UpdateProductBarcodeRequest {
+  int32 id = 1 [json_name = "id", (validate.rules).int32 = {gt: 0}];
+  google.protobuf.Struct data = 2 [json_name = "data", (validate.rules).any = {required: true}];
+}
+
+message UpdateProductBarcodeResponse {
+  google.rpc.Code code = 1 [json_name = "code"];
+  ProductBarcode data = 2 [json_name = "data"];
+}
+
+// Product Barcodes - END
