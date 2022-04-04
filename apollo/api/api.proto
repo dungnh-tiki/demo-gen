@@ -1,0 +1,480 @@
+syntax = "proto3";
+package ims.apollo.v1;
+
+import "google/api/annotations.proto";
+import "google/api/http.proto";
+import "google/api/httpbody.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "api/io.proto";
+
+service ApolloService {
+  // Warehouse - BEGIN
+
+  rpc CreateWarehouse(CreateWarehouseRequest) returns (CreateWarehouseResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Warehouses",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/warehouses",
+      body: "*",
+    };
+  }
+
+  rpc GetWarehouse(GetWarehouseRequest) returns (GetWarehouseResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Warehouses",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/warehouses/{id}",
+    };
+  }
+
+  rpc ListWarehouse(ListWarehouseRequest) returns (ListWarehouseResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Warehouses",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/warehouses",
+    };
+  }
+
+  rpc UpdateWarehouse(UpdateWarehouseRequest) returns (UpdateWarehouseResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Warehouses",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/warehouses/{id}",
+      body: "data",
+    };
+  }
+
+  rpc SyncWarehouse(SyncWarehouseRequest) returns (SyncWarehouseResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Warehouses",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/warehouses/{erp_id}/sync",
+      body: "data",
+    };
+  }
+
+  // Warehouse - END
+
+  // Locations - BEGIN
+
+  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Locations",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/locations",
+      body: "*",
+    };
+  }
+
+  rpc ListLocation(ListLocationRequest) returns (ListLocationResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Locations",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/locations",
+    };
+  }
+
+  rpc GetLocation(GetLocationRequest) returns (GetLocationResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Locations",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/locations/{id}",
+    };
+  }
+
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateLocationResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Locations",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/locations/{id}",
+      body: "data",
+    };
+  }
+
+  rpc SyncLocation(SyncLocationRequest) returns (SyncLocationResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Locations",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/locations/{erp_id}/sync",
+      body: "data",
+    };
+  }
+
+  // Locations - END
+
+  // Zones - BEGIN
+
+  rpc CreateZone(CreateZoneRequest) returns (CreateZoneResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Zones",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/zones",
+      body: "*",
+    };
+  }
+
+  rpc ListZone(ListZoneRequest) returns (ListZoneResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Zones",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/zones",
+    };
+  }
+
+  rpc GetZone(GetZoneRequest) returns (GetZoneResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Zones",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/zones/{id}",
+    };
+  }
+
+  rpc UpdateZone(UpdateZoneRequest) returns (UpdateZoneResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Zones",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/zones/{id}",
+      body: "data",
+    };
+  }
+
+  rpc SyncZone(SyncZoneRequest) returns (SyncZoneResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Zones",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/zones/{erp_id}/sync",
+      body: "data",
+    };
+  }
+
+  // Zones - END
+
+  // Shelves - BEGIN
+
+  rpc CreateShelf(CreateShelfRequest) returns (CreateShelfResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Shelves",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/shelves",
+      body: "*",
+    };
+  }
+
+  rpc ListShelf(ListShelfRequest) returns (ListShelfResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Shelves",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/shelves",
+    };
+  }
+
+  rpc GetShelf(GetShelfRequest) returns (GetShelfResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Shelves",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/shelves/{id}",
+    };
+  }
+
+  rpc UpdateShelf(UpdateShelfRequest) returns (UpdateShelfResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Shelves",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/shelves/{id}",
+      body: "data",
+    };
+  }
+
+  rpc SyncShelf(SyncShelfRequest) returns (SyncShelfResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Shelves",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/shelves/{erp_id}/sync",
+      body: "data",
+    };
+  }
+
+  // Shelves - END
+
+  // Totes - BEGIN
+
+  rpc CreateTote(CreateToteRequest) returns (CreateToteResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Totes",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/totes",
+      body: "*",
+    };
+  }
+
+  rpc ListTote(ListToteRequest) returns (ListToteResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Totes",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/totes",
+    };
+  }
+
+  rpc GetTote(GetToteRequest) returns (GetToteResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Totes",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/totes/{id}",
+    };
+  }
+
+  rpc UpdateTote(UpdateToteRequest) returns (UpdateToteResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Totes",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/totes/{id}",
+      body : "data",
+    };
+  }
+
+  rpc SyncTote(SyncToteRequest) returns (SyncToteResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Totes",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/totes/{erp_id}/sync",
+      body : "data",
+    };
+  }
+
+  // Totes - END
+
+  // Product Uoms - BEGIN
+
+  rpc CreateProductUom(CreateProductUomRequest) returns (CreateProductUomResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductUoms",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/product-uoms",
+      body: "*",
+    };
+  }
+
+  rpc GetProductUom(GetProductUomRequest) returns (GetProductUomResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductUoms",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-uoms/{id}",
+    };
+  }
+
+  rpc ListProductUom(ListProductUomRequest) returns (ListProductUomResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductUoms",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-uoms",
+    };
+  }
+
+  rpc UpdateProductUom(UpdateProductUomRequest) returns (UpdateProductUomResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductUoms",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/product-uoms/{id}",
+      body: "data",
+    };
+  }
+
+  // Product Uoms - END
+
+  // Product Brands - BEGIN
+
+  rpc CreateProductBrand(CreateProductBrandRequest) returns (CreateProductBrandResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBrands",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/product-brands",
+      body: "*",
+    };
+  }
+
+  rpc GetProductBrand(GetProductBrandRequest) returns (GetProductBrandResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBrands",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-brands/{id}",
+    };
+  }
+
+  rpc ListProductBrand(ListProductBrandRequest) returns (ListProductBrandResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBrands",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-brands",
+    };
+  }
+
+  rpc UpdateProductBrand(UpdateProductBrandRequest) returns (UpdateProductBrandResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBrands",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/product-brands/{id}",
+      body: "data",
+    };
+  }
+
+  // Product Brands - END
+
+  // Product Category Groups - BEGIN
+
+  rpc CreateProductCategoryGroup(CreateProductCategoryGroupRequest) returns (CreateProductCategoryGroupResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategoryGroups",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/product-category-groups",
+      body: "*",
+    };
+  }
+
+  rpc GetProductCategoryGroup(GetProductCategoryGroupRequest) returns (GetProductCategoryGroupResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategoryGroups",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-category-groups/{id}",
+    };
+  }
+
+  rpc ListProductCategoryGroup(ListProductCategoryGroupRequest) returns (ListProductCategoryGroupResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategoryGroups",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-category-groups",
+    };
+  }
+
+  rpc UpdateProductCategoryGroup(UpdateProductCategoryGroupRequest) returns (UpdateProductCategoryGroupResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategoryGroups",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/product-category-groups/{id}",
+      body: "data",
+    };
+  }
+
+  // Product Category Groups - END
+
+  // Product Categories - BEGIN
+
+  rpc CreateProductCategory(CreateProductCategoryRequest) returns (CreateProductCategoryResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategories",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/product-categories",
+      body: "*",
+    };
+  }
+
+  rpc GetProductCategory(GetProductCategoryRequest) returns (GetProductCategoryResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategories",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-categories/{id}",
+    };
+  }
+
+  rpc ListProductCategory(ListProductCategoryRequest) returns (ListProductCategoryResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategories",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-categories",
+    };
+  }
+
+  rpc UpdateProductCategory(UpdateProductCategoryRequest) returns (UpdateProductCategoryResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductCategories",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/product-categories/{id}",
+      body: "data",
+    };
+  }
+
+  // Product Categories - END
+
+  // Product Barcodes - BEGIN
+
+  rpc CreateProductBarcode(CreateProductBarcodeRequest) returns (CreateProductBarcodeResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBarcodes",
+    };
+    option (google.api.http) = {
+      post : "/api/v1/product-barcodes",
+      body: "*",
+    };
+  }
+
+  rpc GetProductBarcode(GetProductBarcodeRequest) returns (GetProductBarcodeResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBarcodes",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-barcodes/{id}",
+    };
+  }
+
+  rpc ListProductBarcode(ListProductBarcodeRequest) returns (ListProductBarcodeResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBarcodes",
+    };
+    option (google.api.http) = {
+      get : "/api/v1/product-barcodes",
+    };
+  }
+
+  rpc UpdateProductBarcode(UpdateProductBarcodeRequest) returns (UpdateProductBarcodeResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "ProductBarcodes",
+    };
+    option (google.api.http) = {
+      patch : "/api/v1/product-barcodes/{id}",
+      body: "data",
+    };
+  }
+
+  // Product Barcodes - END
+}
