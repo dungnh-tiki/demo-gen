@@ -85,12 +85,12 @@ message ProductUom {
   int32 id = 1;
   string unit = 2;
   string code = 3;
-  bool is_active = 4;
+  bool is_active = 4 [json_name = "is_active"];
   double rounding = 5;
   double factor = 6;
-  int32 erp_id = 7;
-  google.protobuf.Timestamp created_at = 8;
-  google.protobuf.Timestamp updated_at = 9;
+  int32 erp_id = 7 [json_name = "erp_id"];
+  google.protobuf.Timestamp created_at = 8 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 9 [json_name = "updated_at"];
 }
 
 message ProductBrand {
@@ -98,33 +98,33 @@ message ProductBrand {
   string name = 2;
   string code = 3;
   string description = 4;
-  int32 erp_id = 5;
-  bool is_active = 6;
+  int32 erp_id = 5 [json_name = "erp_id"];
+  bool is_active = 6 [json_name = "is_active"];
 }
 
 message ProductCategoryGroup {
   int32 id = 1;
   string name = 2;
   string code = 3;
-  int32 erp_id = 4;
+  int32 erp_id = 4 [json_name = "erp_id"];
 }
 
 message ProductCategory {
   int32 id = 1;
   string name = 2;
   string type = 3;
-  int32 parent_id = 4;
-  int32 product_category_group_id = 5;
-  int32 erp_id = 6;
-  google.protobuf.Timestamp created_at = 7;
-  google.protobuf.Timestamp updated_at = 8;
+  int32 parent_id = 4 [json_name = "parent_id"];
+  int32 product_category_group_id = 5 [json_name = "product_category_group_id"];
+  int32 erp_id = 6 [json_name = "erp_id"];
+  google.protobuf.Timestamp created_at = 7 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 8 [json_name = "updated_at"];
 }
 
 message ProductBarcode {
   int32 id = 1;
   string code = 2;
-  int32 product_id = 3;
-  int32 erp_id = 4;
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
+  int32 product_id = 3 [json_name = "product_id"];
+  int32 erp_id = 4 [json_name = "erp_id"];
+  google.protobuf.Timestamp created_at = 5 [json_name = "created_at"];
+  google.protobuf.Timestamp updated_at = 6 [json_name = "updated_at"];
 }
